@@ -1,7 +1,6 @@
 # Node
 node_modules/
 .next/
-*.log
 
 # Python
 __pycache__/
