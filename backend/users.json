@@ -1,0 +1,38 @@
+[
+  {
+    "id": "user1",
+    "name": "John Doe",
+    "imagePath": "images/user1.jpg",
+    "sessions": [
+      {
+        "id": "session1",
+        "name": "Intro to Programming",
+        "date": "2024-05-15"
+      }
+    ]
+  },
+  {
+    "id": "harsha",
+    "name": "Harsha Doe",
+    "imagePath": "images/harsha.jpg",
+    "sessions": [
+      {
+        "id": "session1",
+        "name": "Intro to Programming",
+        "date": "2024-05-15"
+      }
+    ]
+  },
+  {
+    "id": "user2",
+    "name": "Jane Smith",
+    "imagePath": "images/user2.jpg",
+    "sessions": [
+      {
+        "id": "session2",
+        "name": "Web Development Basics",
+        "date": "2024-05-20"
+      }
+    ]
+  }
+]
