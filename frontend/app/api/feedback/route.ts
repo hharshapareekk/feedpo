@@ -1,27 +1,44 @@
 // app/api/feedback/route.ts
-import { users } from '@/lib/database';
-import { NextResponse } from 'next/server';
+import { users } from "@/lib/database";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { sessionId, userId, answers, ratingPath } = await request.json();
+    const body = await request.json();
+    const { sessionId, userId, answers, ratingPath } = body;
 
-    // Find the user and update their session
-    const user = users.find(u => u.id === userId);
-    if (user) {
-      const session = user.sessions.find(s => s.id === sessionId);
-      if (session) {
-        session.feedbackSubmitted = true;
-      }
+    // Basic validation
+    if (!sessionId || !userId || !answers || !ratingPath) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
-    // In a real app, you would save this to a database
-    // For now, we're just updating the mock data
+    // Update mock user data
+    const user = users.find((u) => u.id === userId);
+    if (!user) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    const session = user.sessions.find((s) => s.id === sessionId);
+    if (!session) {
+      return NextResponse.json(
+        { error: "Session not found" },
+        { status: 404 }
+      );
+    }
+
+    session.feedbackSubmitted = true;
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("Error in POST /api/feedback:", error);
     return NextResponse.json(
-      { error: 'Failed to submit feedback' },
+      { error: "Failed to submit feedback" },
       { status: 500 }
     );
   }
