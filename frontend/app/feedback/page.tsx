@@ -14,7 +14,7 @@ export default function FeedbackPage() {
       const foundUser = users.find((u) => u.id === userId);
       if (foundUser) setUser(foundUser);
     }
-  }, [searchParams]);
+  }, [searchParams.toString()]);
 
   if (!user)
     return (
